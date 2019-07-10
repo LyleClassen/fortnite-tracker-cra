@@ -20,7 +20,7 @@ const TextElipses = ({ children: textToElipse, speed }) => {
 
 TextElipses.defaultProps = { 
   children: '...',
-  speed: 1000
+  speed: 500
 }
 
 TextElipses.propTypes = { 
