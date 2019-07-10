@@ -10,6 +10,7 @@ const StyledPage = styled.div`
   background-color: #12244E;
   color: #8AB7F3;
   height: 100%;
+  overflow: auto;
 `;
 
 const FortByteTrackerPage = () => {
