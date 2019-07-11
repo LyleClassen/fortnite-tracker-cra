@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import FortByteItem from './FortByteItem';
 
 const StyledForByteList = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ const StyledForByteList = styled.div`
 
 const FortByteList = ({ fortbytes }) => (
   <StyledForByteList>
-    {fortbytes.map(fortByte => <div key={fortByte.id}>{fortByte.description}</div>)}
+    {fortbytes.map(fortByte => <FortByteItem key={fortByte.id} fortByte={fortByte}/>)}
   </StyledForByteList>
 );
 

@@ -3,12 +3,14 @@ import { useAsync, Pending, Fulfilled, Rejected  } from 'react-async';
 import styled from 'styled-components';
 import Container from '@material-ui/core/Container';
 import { getFortBytes } from 'services/api/fortbytes';
+import backgroundImage from 'assets/images/background.jpg';
 import Loader from './loader';
 import FortByteListPage from './FortByteListPage';
 
 const StyledPage = styled.div`
-  background-color: #12244E;
-  color: #8AB7F3;
+  background: url(${backgroundImage}) no-repeat center center fixed;
+  background-size: cover;
+  color: #2F4B8D;
   height: 100%;
   overflow: auto;
 `;

@@ -44,7 +44,9 @@ const setupFortBytesForUser = (fortbytes) => fortbytes.map(fb => { return { ...f
  * @param {{fortByteData:{fortBytes: Array}}} param0 
  */
 const FortByteListPage = ({ fortByteData }) => {
-  const [visibleFortBytes, setVisibleFortBytes] = useState(fortByteData.fortBytes);
+  const [userFB, setUserFB] = useState(setupFortBytesForUser(fortByteData.fortBytes));
+  
+  const [visibleFortBytes, setVisibleFortBytes] = useState(userFB);
   const [filterAchievable, setFilterAchievable] = useState(false);
   const [filterUnlocked, setFilterUnlocked] = useState(false);
 
