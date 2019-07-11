@@ -34,7 +34,11 @@ export const ACHIEVABLE = 'ACHIEVABLE'
 const onCheckChange = (setter) => (evt, checked) => {
   setter(checked);
 } 
-
+/**
+ * 
+ * @param {Array} fortbytes 
+ */
+const setupFortBytesForUser = (fortbytes) => fortbytes.map(fb => { return { ...fb, isComplete: false}}); 
 /**
  * 
  * @param {{fortByteData:{fortBytes: Array}}} param0 
