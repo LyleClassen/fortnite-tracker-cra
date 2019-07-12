@@ -5,6 +5,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import FortByteList from '../FortByteList';
+import { storeCompletedFB, getCompletedFB } from 'services/storeManager';
 
 const StyledFortByteListPage = styled.div`
   display: flex;
@@ -33,12 +34,28 @@ export const ACHIEVABLE = 'ACHIEVABLE'
 
 const onCheckChange = (setter) => (evt, checked) => {
   setter(checked);
-} 
+}
+
+const handleDoneClick = (userFB, setUserFB) => fbId => {
+  const updatedFB = userFB.map(fb => {
+    if(fb.id === fbId){
+      storeCompletedFB(fbId);
+      return {
+        ...fb,
+        isComplete: !fb.isComplete
+      }
+    }
+    return fb;
+  })
+  setUserFB(updatedFB);
+}
+
 /**
  * 
  * @param {Array} fortbytes 
  */
-const setupFortBytesForUser = (fortbytes) => fortbytes.map(fb => { return { ...fb, isComplete: false}}); 
+const setupFortBytesForUser = (fortbytes) => fortbytes.map(fb => ({ ...fb, isComplete: getCompletedFB().includes(fb.id)}));
+
 /**
  * 
  * @param {{fortByteData:{fortBytes: Array}}} param0 
@@ -47,11 +64,15 @@ const FortByteListPage = ({ fortByteData }) => {
   const [userFB, setUserFB] = useState(setupFortBytesForUser(fortByteData.fortBytes));
   
   const [visibleFortBytes, setVisibleFortBytes] = useState(userFB);
+  const [filterComplete, setFilterComplete] = useState(false);
   const [filterAchievable, setFilterAchievable] = useState(false);
   const [filterUnlocked, setFilterUnlocked] = useState(false);
 
   useEffect(() => {
-    let newFBList = fortByteData.fortBytes;
+    let newFBList = userFB;
+    if(filterComplete){
+      newFBList = newFBList.filter(fb => !fb.isComplete);
+    }
     if(filterAchievable){
       newFBList = newFBList.filter(fb => !fb.isAchieved);
     }
@@ -59,7 +80,7 @@ const FortByteListPage = ({ fortByteData }) => {
       newFBList = newFBList.filter(fb => fb.unlocked);
     }
     setVisibleFortBytes(newFBList);
-  }, [fortByteData, filterAchievable, filterUnlocked])
+  }, [userFB, filterAchievable, filterUnlocked, filterComplete])
   return (
     <StyledFortByteListPage>
       <ImageHeader>
@@ -74,7 +95,7 @@ const FortByteListPage = ({ fortByteData }) => {
         <FormGroup row>
           <FormControlLabel
             control={
-              <Switch />
+              <Switch checked={filterComplete} onChange={onCheckChange(setFilterComplete)}/>
             }
             label="Hide Completed"
           />
@@ -93,7 +114,7 @@ const FortByteListPage = ({ fortByteData }) => {
         </FormGroup>
       </CenterDiv>
       <CenterDiv>
-        <FortByteList fortbytes={visibleFortBytes} />
+        <FortByteList fortbytes={visibleFortBytes} onDoneClick={handleDoneClick(userFB, setUserFB)}/>
       </CenterDiv>
     </StyledFortByteListPage>
 );}

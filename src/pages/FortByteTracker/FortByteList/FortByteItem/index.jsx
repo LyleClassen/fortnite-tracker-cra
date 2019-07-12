@@ -24,9 +24,9 @@ const StyledButton = mStyled(Button)({
   color: 'white',
 })
 
-const FortByteItem = ({ fortByte }) => (
+const FortByteItem = ({ fortByte, onDoneClick }) => (
   <StyledFortByteItem>
-    <StyledButton>
+    <StyledButton onClick={() => onDoneClick(fortByte.id)}>
       {fortByte.isCompleted ? <DoneIcon/> : <PuzzleIcon/>} 
       <div>Done</div>
     </StyledButton>

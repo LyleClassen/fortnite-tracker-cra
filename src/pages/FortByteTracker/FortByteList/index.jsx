@@ -7,9 +7,9 @@ const StyledForByteList = styled.div`
   flex-direction: column;
 `
 
-const FortByteList = ({ fortbytes }) => (
+const FortByteList = ({ fortbytes, onDoneClick }) => (
   <StyledForByteList>
-    {fortbytes.map(fortByte => <FortByteItem key={fortByte.id} fortByte={fortByte}/>)}
+    {fortbytes.map(fortByte => <FortByteItem key={fortByte.id} fortByte={fortByte} onDoneClick={onDoneClick}/>)}
   </StyledForByteList>
 );
 
