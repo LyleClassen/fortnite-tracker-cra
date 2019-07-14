@@ -4,10 +4,11 @@ import { styled as mStyled } from '@material-ui/styles';
 import PuzzleIcon from '@material-ui/icons/Extension';
 import DoneIcon from '@material-ui/icons/Done';
 import { Button } from '@material-ui/core';
+import { HexColorA } from 'utils/styles';
 
 const StyledFortByteItem = styled.div`
   display: flex;
-  background-color: #000D4D99;
+  background-color: ${HexColorA('#000D4D', 0.7)};
   height: 50px;
   margin-bottom: 5px;
 `

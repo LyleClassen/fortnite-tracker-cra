@@ -12,20 +12,39 @@ const FlexCenter = styled.div`
 const StyledLoaderContainer = styled.div`
   display: flex; 
   flex-direction: column;
+  margin-top: 30px;
 `;
 
 const StyledLoadingText = styled.div`
   text-align: center;
   font-size: 3rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+`;
+
+const StyledFooter = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const StyledLoaderPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `;
 
 const Loader = ({ loadingText }) => (
-  <FlexCenter>
-    <StyledLoaderContainer>
-      <img src={bestfriendsGif} alt="Loading Gif..." />
+  <StyledLoaderPage>
+    <FlexCenter>
+      <StyledLoaderContainer>
+        <img src={bestfriendsGif} alt="Loading Gif..." />
+      </StyledLoaderContainer>
+    </FlexCenter>
+    <StyledFooter>
       <StyledLoadingText>{loadingText}<TextElipses /></StyledLoadingText>
-    </StyledLoaderContainer>
-  </FlexCenter>
+    </StyledFooter>
+  </StyledLoaderPage>
 );
 
 Loader.defaultProps = {
