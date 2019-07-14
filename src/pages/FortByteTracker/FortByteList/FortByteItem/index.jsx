@@ -25,6 +25,12 @@ const StyledButton = mStyled(Button)({
   color: 'white',
 })
 
+const StyledLink = styled.a`
+  :visited,:active,:visited,:link {
+    color: #81A3DE;
+  }
+`
+
 const FortByteItem = ({ fortByte, onDoneClick }) => (
   <StyledFortByteItem>
     <StyledButton onClick={() => onDoneClick(fortByte.id)}>
@@ -32,7 +38,7 @@ const FortByteItem = ({ fortByte, onDoneClick }) => (
       <div>Done</div>
     </StyledButton>
     <StyledDescription>
-    {fortByte.canBeFound ? <a href={fortByte.url} target='blank'>{fortByte.description}</a> : <div>{fortByte.description}</div>}
+    {fortByte.canBeFound ? <StyledLink href={fortByte.url} target='blank'>{fortByte.description}</StyledLink> : <div>{fortByte.description}</div>}
     </StyledDescription>
   </StyledFortByteItem>
 );
