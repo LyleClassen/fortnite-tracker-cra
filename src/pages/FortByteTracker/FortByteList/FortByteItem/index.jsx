@@ -20,9 +20,9 @@ const StyledDescription = styled.div`
   margin-left: 20px;
 `
 
-const StyledButton = mStyled(Button)({
+const StyledButton = mStyled(({ isComplete, ...restProps }) => <Button {...restProps}/>)({
   backgroundColor: '#000D4D',
-  color: 'white',
+  color: props =>  props.isComplete ? "lime" : "white",
 })
 
 const StyledLink = styled.a`
@@ -33,8 +33,8 @@ const StyledLink = styled.a`
 
 const FortByteItem = ({ fortByte, onDoneClick }) => (
   <StyledFortByteItem>
-    <StyledButton onClick={() => onDoneClick(fortByte.id)}>
-      {fortByte.isCompleted ? <DoneIcon/> : <PuzzleIcon/>} 
+    <StyledButton isComplete={fortByte.isComplete} onClick={() => onDoneClick(fortByte.id)}>
+      {fortByte.isComplete ? <DoneIcon/> : <PuzzleIcon/>} 
       <div>Done</div>
     </StyledButton>
     <StyledDescription>
