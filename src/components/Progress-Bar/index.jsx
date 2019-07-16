@@ -6,6 +6,8 @@ const StyledProgressContainer = styled.div`
   height: ${({hieght}) => hieght}px;
   width: 100%;
   border: 1px solid #000D4D;
+  display: flex;
+  align-items: center;
 `;
 
 const StyledProgressFiller = styled.div`
@@ -27,8 +29,9 @@ const StyledCompletedText = styled.div`
 const ProgressBar = ({ value, hieght, className }) => (
   <StyledProgressContainer hieght={hieght} className={className}>
     <StyledProgressFiller hieght={hieght} value={value}>
-      <StyledCompletedText>{value}</StyledCompletedText>
+      {value >= 10 && <StyledCompletedText>{value}</StyledCompletedText>}
     </StyledProgressFiller>
+    {value < 10 && <StyledCompletedText>{value}</StyledCompletedText>}
   </StyledProgressContainer>
 );
 
