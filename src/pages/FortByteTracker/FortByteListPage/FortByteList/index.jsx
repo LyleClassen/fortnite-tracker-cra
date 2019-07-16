@@ -5,6 +5,7 @@ import FortByteItem from './FortByteItem';
 const StyledForByteList = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `
 
 const FortByteList = ({ fortbytes, onDoneClick }) => (

@@ -6,11 +6,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Switch from '@material-ui/core/Switch';
+import { CenterDiv } from 'components/layout/CenterDiv';
 
 const StyledFilterSection = styled.div`
   display: flex; 
   flex-direction: column;
-  margin-bottom: 20px;
+  width: 100%;
 `
 
 const StyledSearchSection = styled.div`
@@ -20,6 +21,7 @@ const StyledSearchSection = styled.div`
 const SearchTextField = mStyled(TextField)({
   flexGrow: 4,
 });
+
 const ClearSearchButton = mStyled(Button)({
   backgroundColor: '#000D4D',
   color: 'white',
@@ -48,35 +50,37 @@ const FilterSection = ({ filters, setFilters }) => {
   }, [filterComplete, filterAchievable, filterUnlocked, searchText, setFilters] )
   return (
   <StyledFilterSection>
-    <FormGroup row>
-      <FormControlLabel
-        control={
-          <Switch
-            checked={filterComplete}
-            onChange={onCheckChange(setFilterComplete)}
-          />
-        }
-        label="Hide Completed"
-      />
-      <FormControlLabel
-        control={
-          <Switch
-            checked={filterAchievable}
-            onChange={onCheckChange(setFilterAchievable)}
-          />
-        }
-        label="Hide Achievable"
-      />
-      <FormControlLabel
-        control={
-          <Switch
-            checked={filterUnlocked}
-            onChange={onCheckChange(setFilterUnlocked)}
-          />
-        }
-        label="Show Unlocked Only"
-      />
-    </FormGroup>
+    <CenterDiv>
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={filterComplete}
+              onChange={onCheckChange(setFilterComplete)}
+            />
+          }
+          label="Hide Completed"
+        />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={filterAchievable}
+              onChange={onCheckChange(setFilterAchievable)}
+            />
+          }
+          label="Hide Achievable"
+        />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={filterUnlocked}
+              onChange={onCheckChange(setFilterUnlocked)}
+            />
+          }
+          label="Show Unlocked Only"
+        />
+      </FormGroup>
+    </CenterDiv>
     <StyledSearchSection>
       <SearchTextField value={searchText} onChange={onTextChange(setSearchText)} label="Search" />
       <ClearSearchButton onClick={() => setSearchText('')}>Clear</ClearSearchButton>
