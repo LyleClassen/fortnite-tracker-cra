@@ -19,8 +19,9 @@ const StyledProgressFiller = styled.div`
 `;
 
 const StyledCompletedText = styled.div`
+  display: table-cell;
   padding: 0 10px;
-  vertical-align: middle;
+  font-size: 1.3rem;
 `
 
 const ProgressBar = ({ value, hieght, className }) => (
@@ -32,7 +33,7 @@ const ProgressBar = ({ value, hieght, className }) => (
 );
 
 ProgressBar.defaultProps = {
-  hieght: 20,
+  hieght: 30,
 }
 
 export default ProgressBar;

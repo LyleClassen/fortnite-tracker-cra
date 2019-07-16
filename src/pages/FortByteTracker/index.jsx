@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAsync, Pending, Fulfilled, Rejected  } from 'react-async';
 import styled from 'styled-components';
+import { styled as mStyled } from '@material-ui/styles';
 import Container from '@material-ui/core/Container';
 import { getFortBytes } from 'services/api/fortbytes';
 import backgroundImage from 'assets/images/background.jpg';
@@ -15,11 +16,15 @@ const StyledPage = styled.div`
   overflow: auto;
 `;
 
+const StyledContainer = mStyled(Container)({
+  height: '100%',
+})
+
 const FortByteTrackerPage = () => {
   const state = useAsync({ promiseFn: getFortBytes });
   return (
   <StyledPage>
-    <Container>
+    <StyledContainer>
       <Pending state={state}>
         <Loader />
       </Pending>
@@ -31,7 +36,7 @@ const FortByteTrackerPage = () => {
         <FortByteListPage fortByteData={fortByteData}/>
       }
       </Fulfilled>
-    </Container>
+    </StyledContainer>
   </StyledPage>
 );
 }

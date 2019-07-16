@@ -25,6 +25,7 @@ const StyledLoadingText = styled.div`
 const StyledFooter = styled.div`
   display: flex;
   justify-content: flex-start;
+  margin-bottom: 30px;
 `;
 
 const StyledLoaderPage = styled.div`

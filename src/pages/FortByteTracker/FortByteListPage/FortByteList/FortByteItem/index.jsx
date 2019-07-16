@@ -23,6 +23,7 @@ const StyledDescription = styled.div`
 const StyledButton = mStyled(({ isComplete, ...restProps }) => <Button {...restProps}/>)({
   backgroundColor: '#000D4D',
   color: props =>  props.isComplete ? "lime" : "white",
+  minWidth: '80px'
 })
 
 const StyledLink = styled.a`
