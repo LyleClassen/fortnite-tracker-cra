@@ -32,7 +32,11 @@ export const onFilterChange = (userFB,filters,setVisibleFortBytes) => () => {
     newFBList = newFBList.filter(fb => fb.unlocked);
   }
   if(filters.searchText){
-    newFBList = newFBList.filter(fb => fb.description.toLowerCase().includes(filters.searchText.toLowerCase()))
+    newFBList = newFBList.filter(fb => {
+      const descriptionLower = fb.description.toLowerCase();
+      const searchTerms = filters.searchText.toLowerCase().trim().split(' ');
+      return descriptionLower.match(new RegExp(searchTerms.join('|')));
+    })
   }
   setVisibleFortBytes(newFBList);
 }
